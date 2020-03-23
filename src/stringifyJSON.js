@@ -29,9 +29,11 @@ var stringifyJSON = function(obj) {
     for (var key in obj) {
       if (obj[key] === undefined || typeof obj[key] === 'function') {
         return '{}';
+      } else {
+        arr.push(`"${key}":${stringifyJSON(obj[key])}`);
       }
     }
-    return '{' + obj + '}';
+    return '{' + arr + '}';
   }
   return output;
 };
